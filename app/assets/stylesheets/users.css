@@ -1,0 +1,15 @@
+.title{
+    margin: 50px ;
+}
+div{
+ 
+    justify-content: center;
+    align-items: center;    
+}
+.cart-container{
+    display:flex;
+    flex-direction: column;
+}
+.button{
+    margin: 10px 0 0 0;
+}

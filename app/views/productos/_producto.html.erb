@@ -1,0 +1,35 @@
+<%= stylesheet_link_tag 'producto', media: 'all', data: { turbolinks: false } %> 
+
+<div id="<%= dom_id producto %>">
+  
+  <p>
+    <strong>Nombre:</strong>
+    <%= producto.name %>
+  </p>
+
+  <p>
+    <strong>Descripcion:</strong>
+    <%= producto.descripcion %>
+  </p>
+  
+  <p>
+    
+    <div class="products">
+    <% producto.images.each do |image| %>    
+    <div class="products-items">
+      <%= image_tag image %>
+      <div><%= link_to image.filename%></div>
+    </div>
+    <% end %>  
+  </div>    
+  </p>
+
+  <p>
+    <strong>Precio:</strong>
+    <%= number_to_currency producto.unit_price %>
+  </p>
+
+</div>
+
+
+
