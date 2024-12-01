@@ -11,7 +11,16 @@
     flex-direction: column;
     margin: 20px;
 }
-.ver-producto{
+.product-show-btn{
     display: flex;
     flex-direction: row-reverse;
+}
+.edit-product{
+    display: flex;
+    flex-direction: column;
+}
+.edit-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
