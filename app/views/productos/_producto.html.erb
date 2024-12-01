@@ -16,17 +16,17 @@
     
     <div class="products">
     <% producto.images.each do |image| %>    
-    <div class="products-items">
-      <%= image_tag image %>
+    <div class="products-items product-image">
+      <%= image_tag image%>
       <!-- <div><%= link_to image.filename%></div> -->
     </div>
     <% end %>  
   </div>    
   </p>
 
-  <p>
-    <strong>Precio:</strong>
-    <%= number_to_currency producto.unit_price %>
+  <p style="text-align: center;">
+    <strong style="hover: box-shadow: 10px 10px 20px rgba(36, 36, 36, 0.5);">Precio:</strong>
+    <%= number_to_currency producto.unit_price%>
   </p>
 
 </div>
