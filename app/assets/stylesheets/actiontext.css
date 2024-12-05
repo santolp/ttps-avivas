@@ -1,6 +1,7 @@
 /*
  * Default Trix editor styles. See Action Text overwrites below.
 */
+@import "trix/dist/trix";
 
 trix-editor {
   border: 1px solid #bbb;

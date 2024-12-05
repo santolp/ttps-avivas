@@ -1,11 +1,9 @@
-<% content_for :title, "New producto" %>
-
-<h1>New producto</h1>
-
+<div class="mx-auto md:w-2/3 w-full bg-gray-200/75 p-2">
+  
+  <h1 class="font-bold text-4xl">Producto Nuevo</h1>
+ 
+    <%= link_to "Volver lista de productos", productos_path %>
+  
 <%= render "form", producto: @producto %>
 
-<br>
 
-<div>
-  <%= link_to "Volver lista de productos", productos_path %>
-</div>

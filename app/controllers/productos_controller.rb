@@ -1,5 +1,6 @@
 class ProductosController < ApplicationController
   before_action :set_producto, only: %i[ show edit update destroy ]
+  
 
   # GET /productos or /productos.json
   def index
@@ -25,7 +26,7 @@ class ProductosController < ApplicationController
 
     respond_to do |format|
       if @producto.save
-        format.html { redirect_to @producto, notice: "Producto was successfully created." }
+        format.html { redirect_to @producto, notice: "Producto creado con exito." }
         format.json { render :show, status: :created, location: @producto }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +39,7 @@ class ProductosController < ApplicationController
   def update
     respond_to do |format|
       if @producto.update(producto_params)
-        format.html { redirect_to @producto, notice: "Producto was successfully updated." }
+        format.html { redirect_to @producto, notice: "Producto actualizado con exito." }
         format.json { render :show, status: :ok, location: @producto }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -65,6 +66,6 @@ class ProductosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def producto_params
-      params.expect(producto: [ :name, :descripcion, :unit_price, :stock, :category, :size, :color, :date_in_stock, :last_update, :delete_date, images: [] ])
+      params.expect(producto: [ :name, :description, :unit_price, :stock, :category, :size, :color, :date_in_stock, :last_update, :delete_date, images: [] ])
     end
 end
