@@ -1,7 +1,6 @@
 .products{
     display: flex   ;
-    flex-direction: row;
-    
+    flex-direction: row;    
     width: auto;
     object-fit: cover;
 }
@@ -25,9 +24,7 @@
     justify-content: space-between;
 }
 
-.product-image {
-
-    
+.product-image {    
     transition: box-shadow 0.3s ease;
 }
 
