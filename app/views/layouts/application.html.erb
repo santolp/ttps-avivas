@@ -10,16 +10,25 @@
     <%= stylesheet_link_tag "tailwind","inter-font","data-turbo-track":"reload" %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= yield :head %>
-
-
-    
+        <%= yield :head %>    
   </head>
 
   <body class="prose mx-auto" >
+    <%= render '/layouts/navbar' %>
     <%= link_to(image_tag("avivas_logo_white.png"),"/") %>
-    <main class="container mx-auto mt-28 px-5 flex">
+    <% if flash[:notice] %>
+      <div class="alert alert-success alert-dismissible fade show mb-0" role="alert">
+        <%= flash[:notice] %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <% end %>
+    <% if flash[:alert] %>
+      <div class="alert alert-warning alert-dismissible fade show mb-0" role="alert">
+        <%= flash[:alert] %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <% end %>
+    <main class="container-fluid mx-auto mt-28 px-5 flex">
       <%= yield %>
     </main>
   </body>
