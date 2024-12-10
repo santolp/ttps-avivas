@@ -1,5 +1,9 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
-
+<%= stylesheet_link_tag 'edit_user', media: 'all', data: { turbolinks: false } %> 
+<div class="edit-container"">
+  <div class="edit-back">
+    <h2>Edit <%= resource_name.to_s.humanize %></h2>
+    <%= link_to "Volver", :back %>  
+</div>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
@@ -31,13 +35,17 @@
     <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
 
-  <div class="actions">
+  <div class="actions btn btn-outline-info update-btn-container">
     <%= f.submit "Update" %>
   </div>
 <% end %>
 
-<h3>Cancel my account</h3>
 
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
+<h3>Eliminar Cuenta</h3>
+<div class="btn-eliminar-container">
 
-<%= link_to "Back", :back %>
+  <div  class="btn btn-danger"><%= button_to "Dar de baja cuenta", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
+  
+</div>
+
+</div>

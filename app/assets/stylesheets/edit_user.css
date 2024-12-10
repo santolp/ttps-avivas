@@ -1,0 +1,17 @@
+.edit-back{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+.edit-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.btn-eliminar-container{
+    display: flex;
+    flex-direction: row;    
+}
+.update-btn-container{
+    margin-top: 10px;
+}

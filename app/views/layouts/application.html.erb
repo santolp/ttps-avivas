@@ -9,8 +9,9 @@
     <meta name="mobile-web-app-capable" content="yes">
     <%= stylesheet_link_tag "tailwind","inter-font","data-turbo-track":"reload" %>
     <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-        <%= yield :head %>    
+    <%= csp_meta_tag %>        
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>    
   </head>
 
   <body class="prose mx-auto" >
@@ -19,16 +20,16 @@
     <% if flash[:notice] %>
       <div class="alert alert-success alert-dismissible fade show mb-0" role="alert">
         <%= flash[:notice] %>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
     <% end %>
     <% if flash[:alert] %>
       <div class="alert alert-warning alert-dismissible fade show mb-0" role="alert">
         <%= flash[:alert] %>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
     <% end %>
-    <main class="container-fluid mx-auto mt-28 px-5 flex">
+    <main class="container-fluid mx-auto flex">
       <%= yield %>
     </main>
   </body>

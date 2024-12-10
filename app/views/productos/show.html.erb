@@ -9,9 +9,9 @@
   <%= render @producto %>
   <div class="edit-buttons">
     <% if current_user %>
-  <%= link_to "Editar producto", edit_producto_path(@producto) %> |
-  
-  <%= button_to "Eliminar producto", @producto, method: :delete %>
+    <%= link_to "Editar producto", edit_producto_path(@producto) %> |
+    
+    <%= button_to "Eliminar producto", @producto, method: :delete %>
   <% end %>
 </div>
 </div>
