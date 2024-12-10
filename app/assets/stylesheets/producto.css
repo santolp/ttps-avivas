@@ -31,3 +31,57 @@
 .product-image:hover {
     box-shadow: 10px 10px 20px rgba(36, 36, 36, 0.5);
 }
+
+button {
+  color: rgb(20, 19, 19);
+  text-decoration: none;
+  font-size: 25px;
+  border: none;
+  background: none;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+}
+
+button::before {
+  margin-left: auto;
+}
+
+button::after, button::before {
+  content: '';
+  width: 0%;
+  height: 2px;
+  background: #f44336;
+  display: block;
+  transition: 0.5s;
+}
+
+button:hover::after, button:hover::before {
+  width: 100%;
+}
+
+.button-edit {
+    color: rgb(20, 19, 19);
+    text-decoration: none;
+    font-size: 15px;
+    border: none;
+    background: none;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .button-edit::before {
+    margin-left: auto;
+  }
+  
+  .button-edit::after, .button-edit::before {
+    content: '';
+    width: 0%;
+    height: 2px;
+    background: #36f43c;
+    display: block;
+    transition: 0.5s;
+  }
+  
+  .button-edit:hover::after, .button-edit:hover::before {
+    width: 100%;
+  }
