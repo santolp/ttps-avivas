@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :productos
+  resource :user ,only: [:show],controller: :user
 
   
   root "home#index"
