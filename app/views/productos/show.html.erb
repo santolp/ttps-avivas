@@ -4,9 +4,11 @@
 <div class="edit-product">
   
   <div class="product-show-btn">
+    
   <%= link_to "Volver a lista de productos", productos_path%> 
   </div>
   <%= render @producto %>
+  <%= link_to "Comprar", "#" , class:"btn btn-warning font-semibold text-xl"%>
   <div class="edit-buttons">
     <% if current_user %>
     <%= link_to "Editar producto", edit_producto_path(@producto) ,class:"button-edit btn-success" %> |
