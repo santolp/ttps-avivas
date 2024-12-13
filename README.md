@@ -120,10 +120,18 @@ brew install postgresql
 brew services start postgresql
 De manera predeterminada, el usuario postgresql es tu nombre de usuario actual de macOS sin contraseña. Por ejemplo, mi usuario de macOS se llama chris, por lo que puedo iniciar sesión en postgresql con ese nombre de usuario.
 
+#### Para instalar sqlite 
+brew install sqlite
+
 Pasos finales
 Y ahora, el momento de la verdad. Vamos a crear tu primera aplicación Rails:
 
 rails new myapp
+
+
+
+#### Si quieres usar SQLite
+rails new myapp -d sqlite
 
 #### Si quieres usar MySQL
 rails new myapp -d mysql
@@ -272,6 +280,25 @@ servidor rails
 
 ¿Obtiene un error de "Acceso denegado"?
 Si recibiste un error que decía Acceso denegado para el usuario 'root'@'localhost' (usando contraseña: NO), entonces debes editar el archivo config/database.yml para que coincida con el nombre de usuario y la contraseña de la base de datos.
+
+---> Instalar SQLite en Windows
+Paso 1: vaya a la página de descarga de SQLite y descargue los binarios precompilados de la sección de Windows.
+
+Paso 2: descargue los archivos comprimidos sqlite-shell-win32-*.zip y sqlite-dll-win32-*.zip.
+
+Paso 3: cree una carpeta C:\>sqlite y descomprima los dos archivos comprimidos anteriores en esta carpeta, lo que le proporcionará los archivos sqlite3.def, sqlite3.dll y sqlite3.exe.
+
+Paso 4: agregue C:\>sqlite en su variable de entorno PATH y, finalmente, vaya al símbolo del sistema y ejecute el comando sqlite3, que debería mostrar el siguiente resultado. 
+
+C:\>sqlite3
+Versión de SQLite 3.7.15.2 2013-01-09 11:53:05
+Ingrese ".help" para obtener instrucciones
+Ingrese instrucciones SQL terminadas con un ";"
+sqlite>
+
+
+fuente: https://www.tutorialspoint.com/sqlite/sqlite_installation.htm
+
 
 Edición de código
 Instala VS Code en Windows e instala la extensión WSL. Esto te permitirá editar código en Windows pero ejecutar comandos y extensiones en WSL. Lee más sobre Desarrollo en WSL.
