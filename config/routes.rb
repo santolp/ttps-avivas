@@ -2,7 +2,10 @@ Rails.application.routes.draw do
   resources :categories
   devise_for :users
   resources :productos
-  resource :user ,only: [:show],controller: :user
+    resource :user ,only: [:show],controller: :user
+    resource :roles ,only: [:show], controller: :roles
+    resource :ventas ,only: [:show], controller: :ventas  
+  
 
   
   root "home#index"
