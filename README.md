@@ -299,12 +299,3 @@ sqlite>
 
 
 fuente: https://www.tutorialspoint.com/sqlite/sqlite_installation.htm
-
-
-Edición de código
-Instala VS Code en Windows e instala la extensión WSL. Esto te permitirá editar código en Windows pero ejecutar comandos y extensiones en WSL. Lee más sobre Desarrollo en WSL.
-
-¡Eso es todo! ¡Cuéntanos en los comentarios a continuación si tienes algún problema o tienes otros consejos profesionales para compartir!
-
-
-fuente: https://gorails.com/setup/windows/10
