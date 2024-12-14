@@ -270,10 +270,10 @@ rails new myapp -d mysql
 #Luego, vaya al directorio de la aplicación
 cd myapp
 
-# Si configura MySQL o Postgres con un nombre de usuario/contraseña, modifique el
-# archivo config/database.yml para que contenga el nombre de usuario/contraseña que especificó
+#Si configura MySQL o Postgres con un nombre de usuario/contraseña, modifique el
+#archivo config/database.yml para que contenga el nombre de usuario/contraseña que especificó
 
-# Cree la base de datos
+#Cree la base de datos
 rake db:create
 
 servidor rails
