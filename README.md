@@ -28,7 +28,8 @@ de la cadena acceder a las interfaces de administración. Ver apartado Gestión 
 
 
 ////////////////////////////////////////////////////
-Prerequisitos para MacOS
+
+# Prerequisitos para MacOS
 
 Instalacion de Rails ---> 
 
@@ -100,11 +101,11 @@ gem install rails -v 8.0.0
 Y ahora podemos verificar que Rails está instalado:
 
 rails -v
-# Rails 8.0.0
+Rails 8.0.0
 Configuración de una base de datos
 Rails viene con sqlite3 como base de datos predeterminada. También puedes usar MySQL o PostgreSQL si lo deseas.
 
-MySQL
+# MySQL
 Puedes instalar el servidor y el cliente MySQL desde Homebrew:
 
 brew install mysql
@@ -113,23 +114,23 @@ De manera predeterminada, el usuario mysql es root sin contraseña.
 
 Cuando hayas terminado, puedes saltar a los pasos finales.
 
-PostgreSQL
+# PostgreSQL
 Puedes instalar el servidor y el cliente PostgreSQL desde Homebrew:
 
 brew install postgresql
 brew services start postgresql
-De manera predeterminada, el usuario postgresql es tu nombre de usuario actual de macOS sin contraseña. Por ejemplo, mi usuario de macOS se llama chris, por lo que puedo iniciar sesión en postgresql con ese nombre de usuario.
 
-#### Para instalar sqlite 
-brew install sqlite
 
-Pasos finales
+# SQlite 
+brew install sqlite.
+
+
+# Pasos finales
 Y ahora, el momento de la verdad. Vamos a crear tu primera aplicación Rails:
 
 rails new myapp
 
-
-
+NOTA:
 #### Si quieres usar SQLite
 rails new myapp -d sqlite
 
@@ -139,7 +140,7 @@ rails new myapp -d mysql
 #### Si quieres usar Postgres
 rails new myapp -d postgresql
 
-# Muévete al directorio de la aplicación
+#Muévete al directorio de la aplicación
 cd myapp
 
 bin/rails server
@@ -151,7 +152,7 @@ Ahora que tienes configurada tu máquina, es hora de comenzar a crear algunas ap
 Si recibiste un error que decía Acceso denegado para el usuario 'root'@'localhost' (usando contraseña: NO), entonces debes actualizar tu archivo config/database.yml para que coincida con el nombre de usuario y la contraseña de la base de datos.
 
 Edición de código
-Instala VS Code.
+# Instala VS Code.
 
 Luego, ejecuta Cmd+Shift+P y selecciona "Instalar el comando 'code' en PATH". Esto agregará el comando code a tu shell para que puedas abrir VS Code desde tu terminal.
 
@@ -159,8 +160,7 @@ Por último, ejecuta este comando para configurar VS Code como tu editor. Esto t
 
 fuente: https://gorails.com/setup/macos/15-sequoia
 
-
-///////// ----->  Windows 10 
+# Windows 10 
 
 Descripción general
 Esto tomará alrededor de 30 minutos.
@@ -188,7 +188,7 @@ Puede buscar "Ubuntu" en el menú Inicio de Windows en cualquier momento para ab
 
 ¡Felicitaciones! Ahora tiene instalado Ubuntu en Windows con WSL. Lo usará para ejecutar su servidor Rails y otros procesos para el desarrollo.
 
-Instalación de Ruby
+# Instalación de Ruby
 El primer paso es instalar las dependencias para compilar Ruby.
 
 Abra su terminal y ejecute los siguientes comandos para instalarlas.
@@ -242,7 +242,7 @@ gem install rails -v 8.0.0
 Ahora que ha instalado Rails, puede ejecutar el comando rails -v para asegurarse de que todo esté instalado correctamente:
 
 rails -v
-# Rails 8.0.0
+Rails 8.0.0
 Si obtiene un resultado diferente por alguna razón, significa que su entorno puede no estar configurado correctamente.
 
 Configuración de PostgreSQL
@@ -252,21 +252,22 @@ sudo apt install postgresql libpq-dev
 sudo service postgresql start
 Deberá iniciar postgresql cada vez que cargue su entorno WSL.
 
-La instalación de postgres no configura un usuario para usted, por lo que deberá seguir estos pasos para crear un usuario con permiso para crear bases de datos. No dude en reemplazar chris con su nombre de usuario.
 
-sudo -u postgres createuser chris -s
-# Si desea establecer una contraseña para el usuario, puede hacer lo siguiente:
+La instalación de postgres no configura un usuario para usted, por lo que deberá seguir estos pasos para crear un usuario con permiso para crear bases de datos. No dude en reemplazar "pepe" con su nombre de usuario.
+
+sudo -u postgres createuser "pepe" -s
+#Si desea establecer una contraseña para el usuario, puede hacer lo siguiente:
 sudo -u postgres psql
-postgres=# \password chris
+postgres=# \password "pepe"
 Pasos finales
 ¡Creemos su primera aplicación Rails en Windows!
 
 rails new myapp -d postgresql
 
-#### O si desea utilizar MySQL
+####O si desea utilizar MySQL
 rails new myapp -d mysql
 
-# Luego, vaya al directorio de la aplicación
+#Luego, vaya al directorio de la aplicación
 cd myapp
 
 # Si configura MySQL o Postgres con un nombre de usuario/contraseña, modifique el
@@ -281,7 +282,7 @@ servidor rails
 ¿Obtiene un error de "Acceso denegado"?
 Si recibiste un error que decía Acceso denegado para el usuario 'root'@'localhost' (usando contraseña: NO), entonces debes editar el archivo config/database.yml para que coincida con el nombre de usuario y la contraseña de la base de datos.
 
----> Instalar SQLite en Windows
+# Instalar SQLite en Windows
 Paso 1: vaya a la página de descarga de SQLite y descargue los binarios precompilados de la sección de Windows.
 
 Paso 2: descargue los archivos comprimidos sqlite-shell-win32-*.zip y sqlite-dll-win32-*.zip.
