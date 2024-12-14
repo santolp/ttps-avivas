@@ -1,0 +1,5 @@
+class AddDescriptionToProducto < ActiveRecord::Migration[8.0]
+  def change
+    add_column :productos, :description, :string
+  end
+end
