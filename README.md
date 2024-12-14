@@ -295,7 +295,36 @@ C:\>sqlite3
 Versión de SQLite 3.7.15.2 2013-01-09 11:53:05
 Ingrese ".help" para obtener instrucciones
 Ingrese instrucciones SQL terminadas con un ";"
+
 sqlite>
 
 
 fuente: https://www.tutorialspoint.com/sqlite/sqlite_installation.htm
+
+# DEMO AVIVAS -->
+1. Home
+
+   ![Alt text](https://github.com/santolp/ttps-avivas/blob/dev/app/assets/images/demo/home.png)
+
+2.Login 
+    ![Alt text](https://github.com/santolp/ttps-avivas/blob/dev/app/assets/images/demo/login.png)
+
+3.Logged In
+    ![Alt text](https://github.com/santolp/ttps-avivas/blob/dev/app/assets/images/demo/logged_in.png)
+4.Productos Page
+    ![Alt text](https://github.com/santolp/ttps-avivas/blob/dev/app/assets/images/demo/productos.png)
+
+5.Nuevo Producto
+    ![Alt text](https://github.com/santolp/ttps-avivas/blob/dev/app/assets/images/demo/new_product_page.png)
+
+6.Sign Up
+    ![Alt text](https://github.com/santolp/ttps-avivas/blob/dev/app/assets/images/demo/sign_up.png)
+
+7.Edit User
+    ![Alt text](https://github.com/santolp/ttps-avivas/blob/dev/app/assets/images/demo/edit_user.png)
+
+8.Edit Usuario
+    ![Alt text](https://github.com/santolp/ttps-avivas/blob/dev/app/assets/images/demo/admin_page.png)
+    
+9.Producto Logged In
+    ![Alt text](https://github.com/santolp/ttps-avivas/blob/dev/app/assets/images/demo/producto_logged_in.png)
