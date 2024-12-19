@@ -1,10 +1,15 @@
 Rails.application.routes.draw do
+  
+  #Resources
   resources :categories
+  resources :roles
   devise_for :users
   resources :productos
-    resource :user ,only: [:show],controller: :user
-    resource :roles ,only: [:show], controller: :roles
-    resource :ventas ,only: [:show], controller: :ventas  
+  
+  
+  #Resource
+  resource :user ,only: [:show],controller: :user    
+  resource :ventas ,only: [:show], controller: :ventas  
   
 
   
