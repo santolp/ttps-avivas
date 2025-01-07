@@ -1,4 +1,31 @@
 <div>
-  <h1 class="font-bold text-4xl">Admin#index</h1>
-  <p>Find me in app/views/admin/index.html.erb</p>
+  <div>
+    <h1>Bienvenidos a Admin index</h1>
+    <h2>Crear User</h2>
+    <button class="btn btn-success">Crear Usuario</button>
+  </div>
+
+  <p></p>
+  
+    <h1>Listado de usuarios actuales</h1>
+    <span></span>
+    <div class="container">
+    <% @users.each do |user| %>
+
+    <div class="row align-items-start">
+      <div class="row">
+        <div class="col">
+          <h2>Email</h2>
+          <%= user.email %>
+        </div>
+        <div class="col">
+          <h2>Rol</h2>
+          <%= user.role %>
+          <button class="btn btn-success">Update</button>
+        </div>
+      
+    </div>
+  </div>
+
+  <%end %>
 </div>

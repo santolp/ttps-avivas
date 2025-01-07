@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
   root "home#index"
   get "home/index"
-  
+
   #Resources
   resources :categories
   resources :roles
   devise_for :users
   resources :productos
-  
+  resources :admin, only: [:index,:create,:update]
   
   #Resource
   resource :user ,only: [:show],controller: :user    
