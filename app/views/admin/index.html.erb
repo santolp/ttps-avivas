@@ -2,7 +2,32 @@
   <div>
     <h1>Bienvenidos a Admin section</h1>
     <h2>Crear User</h2>
-    <button class="btn btn-success">Crear Usuario</button>
+
+    <%= form_with(model: @user,url:admin_index_path,method: :post) do |f| %>
+      <div class="field">
+      <%= f.label :email %>
+      <%= f.email_field :email, autofocus: true, placeholder:"Email",autocomplete: "email" %>
+      </div>
+      <br/>
+      <div class="field">
+      <%= f.label :rol %>
+      <%= f.select(:role, User.roles.keys.map { |w| [w]  }) %>
+    </div>
+    <br/>
+      <div class="field">
+      <%= f.label :Password %>
+      <%= f.password_field :password, placeholder:"Password" %>
+      </div>
+      <br/>
+      <%= f.label :Confirmacion %>
+      <%= f.password_field :password_confirmation, placeholder:"Confirmacion de Password" %>
+      <br/>
+      <br/>
+      <%= f.submit "Crear Usuario",:class=>"btn btn-success"%>
+      <% end %>
+    
+
+
   </div>
 
   <p></p>
