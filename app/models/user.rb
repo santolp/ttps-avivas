@@ -3,7 +3,9 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  enum :role, [:admin , :gerente , :empleado ]
+  enum :role, [:admin , :gerente , :empleado ], suffix: true
+
+
 
 
   after_initialize do
@@ -11,5 +13,5 @@ class User < ApplicationRecord
       self.role ||= :empleado
     end
   end
-
+  
 end
