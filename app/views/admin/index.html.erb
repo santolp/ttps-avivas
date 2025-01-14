@@ -1,6 +1,6 @@
 <div>
   <div>
-    <h1>Bienvenidos a Admin section</h1>
+    <h1>Seccion de Administracion</h1>
     <h2>Crear User</h2>
 
     <%= form_with(model: @user,url:admin_index_path,method: :post) do |f| %>
@@ -45,18 +45,11 @@
         </div>
         
         <div class="col">
-          <h2>Rol</h2>
-          
+          <h2>Rol</h2>          
           <%= form_for(user,url:admin_path(user),remote:true , method: :patch) do |f| %>
             <%= f.select(:role, User.roles.keys.map { |w| [w]  }) %>
             <%= f.submit "Update Role" , :class=>"btn btn-warning" %>
           <% end %>
-
-
-          <!-- <%= form_with(scope: "Role") do |f| %>
-           <%= f.select :id, User.roles.keys.map  {|u| u},{selected:user.role} %> 
-          <% end %> -->
-          
         </div>
       </div>
     </div>
