@@ -33,7 +33,7 @@ class AdminController < ApplicationController
   private 
 
   def authorize_admin!
-    redirect_to root_path, alert: 'Acceso Denegado' unless current_user.admin_role?
+    redirect_to root_path, alert: 'Acceso Denegado' unless current_user.admin_role? or current_user.gerente_role?
   end
 
 
