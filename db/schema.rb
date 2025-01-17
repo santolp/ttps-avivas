@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_06_234415) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_17_194506) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -95,15 +95,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_06_234415) do
     t.integer "role"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  end
-
-  create_table "ventas", force: :cascade do |t|
-    t.string "name"
-    t.string "producto"
-    t.datetime "last_update"
-    t.datetime "delete_date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
