@@ -12,9 +12,9 @@ Rails.application.routes.draw do
   
   #Resource
   resource :user ,only: [:show],controller: :user    
-  resource :ventas ,only: [:show], controller: :ventas  
+  #resources :ventas ,only: [:show], controller: :purchases  
   
-
+  get "ventas" => "purchases#index"
   
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

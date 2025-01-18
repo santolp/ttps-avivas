@@ -10,10 +10,23 @@
       </ul>
     </div>
   <% end %>
-
+  <div class="my-5">
+    <%= form.label :employee, "Vendedor" %>
+    <div class="block font-bold shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full">
+      <%=  current_user.email %>
+    </div>    
+  </div>
   <div class="my-5">
     <%= form.label :fecha_venta %>
-    <%= form.datetime_field :fecha_venta, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    <div class="block font-bold shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full">
+      <%=  Time.now %>
+    </div>  
+  </div>
+  <div class="my-5">
+    <%= form.label :producto_id %>
+  </div>
+  <div class="my-5">
+    <%= form.select(:productos, @productos.map { |w| [w.full_name]  }) %>
   </div>
 
   <div class="my-5">
@@ -29,16 +42,6 @@
   <div class="my-5">
     <%= form.label :precio_total_venta %>
     <%= form.text_field :precio_total_venta, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :producto_id %>
-    <%= form.number_field :producto_id, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="my-5">
