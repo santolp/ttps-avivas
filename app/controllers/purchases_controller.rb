@@ -6,10 +6,12 @@ class PurchasesController < ApplicationController
     @purchases = Purchase.all
     @users = User.all
     @productos = Producto.all
+    
   end
 
   # GET /purchases/1 or /purchases/1.json
-  def show
+  def show    
+    
   end
 
   # GET /purchases/new
