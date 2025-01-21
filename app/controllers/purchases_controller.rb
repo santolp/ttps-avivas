@@ -1,5 +1,5 @@
 class PurchasesController < ApplicationController
-  before_action :set_purchase, only: %i[ show edit update destroy ]
+  before_action :set_purchase, only: %i[ show edit update destroy ]  
 
   # GET /purchases or /purchases.json
   def index
@@ -7,11 +7,11 @@ class PurchasesController < ApplicationController
     @users = User.all
     @productos = Producto.all
     
+    
   end
 
   # GET /purchases/1 or /purchases/1.json
-  def show    
-    
+  def show        
   end
 
   # GET /purchases/new
@@ -23,9 +23,6 @@ class PurchasesController < ApplicationController
   def edit
     @productos = Producto.all 
   end
-
-
-
 
   # POST /purchases or /purchases.json
   def create
