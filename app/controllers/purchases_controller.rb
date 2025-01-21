@@ -21,7 +21,7 @@ class PurchasesController < ApplicationController
   end
 
   def edit
-    @productos = Producto.all # Asegúrate de cargar los productos aquí
+    @productos = Producto.all 
   end
 
 
