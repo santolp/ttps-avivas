@@ -1,3 +1,36 @@
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const selectElement = document.querySelector(".producto-select");
+  const cantidadElement = document.getElementById("cantidad");
+  const precioLabel = document.getElementById("precio-label");
+  const precioTotalVenta = document.getElementById("precio-total-venta");
+
+  if (selectElement && cantidadElement) {   
+    const productos = JSON.parse(selectElement.dataset.productos);
+
+    const calcularTotal = () => {
+      const selectedProductId = parseInt(selectElement.value, 10);
+      const cantidad = parseInt(cantidadElement.value, 10) || 1; 
+      const selectedProduct = productos.find(product => product.id === selectedProductId);
+
+      if (selectedProduct) {
+        const precioUnitario = selectedProduct.unit_price;
+        const precioTotal = precioUnitario * cantidad;
+       
+        precioLabel.textContent = `Precio Unitario: $${precioUnitario}`;
+        precioTotalVenta.value = precioTotal.toFixed(2); 
+      } else {
+        precioLabel.textContent = "Precio Unitario: -";
+        precioTotalVenta.value = "";
+      }
+    };
+
+    selectElement.addEventListener("change", calcularTotal);
+    cantidadElement.addEventListener("input", calcularTotal);
+  }
+});
+ </script>
+
 <%= form_with(model: purchase, class: "contents") do |form| %>
   <% if purchase.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
@@ -22,27 +55,32 @@
       <%=  Time.now %>
     </div>  
   </div>
-  <div class="my-5">
-    <%= form.label :producto_id %>
-  </div>
-  <div class="my-5">
-    <%= form.select(:productos, @productos.map { |w| [w.full_name]  }) %>
-  </div>
 
+  <div class="my-5">
+    <%= form.label :producto_id, "Producto" %>
+  </div> 
   <div class="my-5">
     <%= form.label :cantidad %>
-    <%= form.number_field :cantidad, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.number_field :cantidad, id: "cantidad", value: 1, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>  
+
+  <div class="my-5">
+    <%= form.select :producto_id, 
+                    options_for_select(@productos.map { |p| [p.name, p.id] }),
+                    { include_blank: "Selecciona un producto" },
+                    { class: "producto-select", data: { productos: @productos.to_json } } %>
   </div>
 
   <div class="my-5">
-    <%= form.label :precio_unitario %>
-    <%= form.text_field :precio_unitario, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    <label id="precio-label">Precio Unitario: -</label>
   </div>
+ 
 
-  <div class="my-5">
-    <%= form.label :precio_total_venta %>
-    <%= form.text_field :precio_total_venta, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
+<div class="my-5">
+  <%= form.label :precio_total_venta %>
+  <%= form.text_field :precio_total_venta, id: "precio-total-venta", readonly: true, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+</div>  
+
 
   <div class="my-5">
     <%= form.label :nombre_cliente %>

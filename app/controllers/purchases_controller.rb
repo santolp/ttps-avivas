@@ -18,9 +18,12 @@ class PurchasesController < ApplicationController
     @purchase = Purchase.new
   end
 
-  # GET /purchases/1/edit
   def edit
+    @productos = Producto.all # Asegúrate de cargar los productos aquí
   end
+
+
+
 
   # POST /purchases or /purchases.json
   def create

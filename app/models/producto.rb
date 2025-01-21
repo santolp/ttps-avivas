@@ -4,6 +4,9 @@ class Producto < ApplicationRecord
 
 
 
+  def product_list
+    Producto.all
+  end 
 
   def full_name
     "#{name} - $ #{unit_price}"
