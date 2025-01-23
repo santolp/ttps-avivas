@@ -1,9 +1,10 @@
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  const selectElement = document.querySelector(".producto-select");
+  const selectElement = document.querySelector(".producto_select");
   const cantidadElement = document.getElementById("cantidad");
   const precioLabel = document.getElementById("precio_unitario");
-  const precioTotalVenta = document.getElementById("precio-total-venta");
+  const precioTotalVenta = document.getElementById("precio_total_venta");
+  const stockLabel = document.getElementById("stock_disponible");
   const nombreProducto = "";
   const stockDisponible = 0;
 
@@ -18,16 +19,14 @@ document.addEventListener("DOMContentLoaded", () => {
       if (selectedProduct) {
         const precioUnitario = selectedProduct.unit_price;
         const precioTotal = precioUnitario * cantidad;
-       
+        stockLabel.textContent = `Stock: ${selectedProduct.stock}`;
         precioLabel.textContent = `Precio Unitario: $${precioUnitario}`;
         precioTotalVenta.value = precioTotal.toFixed(2); 
         nombreProducto.value= selectedProduct.name;
         stockDisponible.value = selectedProduct.stock-cantidad;
-        console.log(selectedProduct.stock-cantidad);
-        
-
       } else {
         precioLabel.textContent = "Precio Unitario: -";
+        stockLabel.textContent = `Stock: -`;
         precioTotalVenta.value = "";
       }
     };
@@ -64,16 +63,17 @@ document.addEventListener("DOMContentLoaded", () => {
       <%=  Time.now %>
     </div>  
   </div>
-
   
 
   <div class="my-5">
-    <label id="nombre_producto">Nombre Producto: -</label>
+    <label id="nombre_producto">Producto: </label>
     <%= form.select :producto_id, 
                     options_for_select(@productos.map { |p| [p.name, p.id] }),
                     { include_blank: "Selecciona un producto" },
-                    { class: "producto-select", required: true,data: { productos: @productos.to_json },
+                    { class: "producto_select", required: true,data: { productos: @productos.to_json },
                    } %>
+                   <label id="stock_disponible">Stock: -</label>
+    <%= form.hidden_field :stock_disponible, id: "stock_disponible", class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="my-5">
@@ -83,12 +83,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   <div class="my-5">
     <%= form.label :cantidad %>
-    <%= form.number_field :cantidad, id: "cantidad", min:0 , max:100 ,required: true, value: 0, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.number_field :cantidad, id: "cantidad", min:0 , max:20 ,required: true, value: 0, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
   </div>  
 
 <div class="my-5">
   <%= form.label :precio_total_venta %>
-  <%= form.text_field :precio_total_venta, id: "precio-total-venta", readonly: true, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+  <%= form.text_field :precio_total_venta, id: "precio_total_venta", readonly: true, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
 </div>  
 
 
