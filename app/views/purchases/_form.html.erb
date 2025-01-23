@@ -2,7 +2,8 @@
 document.addEventListener("DOMContentLoaded", () => {
   const selectElement = document.querySelector(".producto_select");
   const cantidadElement = document.getElementById("cantidad");
-  const precioLabel = document.getElementById("precio_unitario");
+  const precioLabel = document.getElementById("precio_unitario_label");
+  const precioUnit = document.getElementById("precio_unitario_value");
   const precioTotalVenta = document.getElementById("precio_total_venta");
   const stockLabel = document.getElementById("stock_disponible");
   const nombreProducto = "";
@@ -19,6 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (selectedProduct) {
         const precioUnitario = selectedProduct.unit_price;
         const precioTotal = precioUnitario * cantidad;
+        precioUnit.value=selectedProduct.unit_price;
         stockLabel.textContent = `Stock: ${selectedProduct.stock}`;
         precioLabel.textContent = `Precio Unitario: $${precioUnitario}`;
         precioTotalVenta.value = precioTotal.toFixed(2); 
@@ -77,13 +79,13 @@ document.addEventListener("DOMContentLoaded", () => {
   </div>
 
   <div class="my-5">
-    <label id="precio_unitario">Precio Unitario: -</label>
-    <%= form.hidden_field :precio_unitario, id: "precio_unitario", class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    <label id="precio_unitario_label">Precio Unitario: -</label>
+    <%= form.number_field :precio_unitario, id: "precio_unitario_value", readonly: true,class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="my-5">
     <%= form.label :cantidad %>
-    <%= form.number_field :cantidad, id: "cantidad", min:0 , max:20 ,required: true, value: 0, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.number_field :cantidad, id: "cantidad", min:1 , max:20 ,required: true, value: 0, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
   </div>  
 
 <div class="my-5">
