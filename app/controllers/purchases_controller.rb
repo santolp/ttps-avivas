@@ -7,11 +7,14 @@ class PurchasesController < ApplicationController
     @users = User.all
     @productos = Producto.all
     
-    
   end
 
   # GET /purchases/1 or /purchases/1.json
-  def show        
+  def show      
+    
+    @producto = Producto.find(@purchase.producto_id).name      
+    @user = User.find(@purchase.user_id).email
+    
   end
 
   # GET /purchases/new
