@@ -30,10 +30,8 @@
           <td> <%= purchase.cantidad  %></td>
           <td> <%= purchase.precio_unitario  %></td>     
           <td> <%= purchase.precio_total_venta  %></td>   
-          <td> <%= @productos[purchase.producto_id].try(:name)  %>
-             
-            </td>   
-          <td> <%= purchase.nombre_cliente   %></td>    
+          <td> <%= @productos[purchase.producto_id].try(:description)  %> </td>             
+          <td> <%= purchase.nombre_cliente%></td>    
           <td>  <%= link_to "Ver Detalle de Venta", purchase, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>      </td>     
         </tr>
       <% end %>       
