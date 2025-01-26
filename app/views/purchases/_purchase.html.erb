@@ -1,7 +1,7 @@
 <div id="<%= dom_id purchase %>">
   <p class="my-5">
     <strong class="block font-medium mb-1">Fecha venta:</strong>
-    <%= purchase.fecha_venta %>
+    <%= purchase.created_at.strftime("%B %d %Y, %l:%M%P") %>
   </p>
 
   <p class="my-5">
@@ -20,7 +20,7 @@
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Empleado:</strong>    
+    <strong class="block font-medium mb-1">Empleado que Realizo la Venta:</strong>    
     <%=  @user %>   
   </p>
 

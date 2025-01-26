@@ -13,7 +13,6 @@ class PurchasesController < ApplicationController
   def show      
     @producto = Producto.find(@purchase.producto_id).name      
     @user = User.find(@purchase.user_id).email
-    
   end
 
   # GET /purchases/new

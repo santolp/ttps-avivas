@@ -13,12 +13,9 @@
       const calcularTotal = () => {
         const selectedProductId = parseInt(selectElement.value, 10);
         const selectedProduct = productos.find(product => product.id === selectedProductId);
-  
-        if (selectedProduct) {        
-          
+        if (selectedProduct) {                  
           cantidadElement.value = 0;
-          precioTotalVenta.value = 0;
-  
+          precioTotalVenta.value = 0;  
           document.getElementById("cantidad").max = selectedProduct.stock;
           const precioUnitario = selectedProduct.unit_price;
           precioUnit.value = precioUnitario;
@@ -73,12 +70,7 @@
       <%= form.hidden_field :user_id, id:"user_id", value:current_user.id  %>
     </div>   
   </div>
-  <div class="my-5">
-    <%= form.label :fecha_venta %>
-    <div class="block font-bold shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full">
-      <%=  Time.now %>
-    </div>  
-  </div>
+ 
   
 
   <div class="my-5">

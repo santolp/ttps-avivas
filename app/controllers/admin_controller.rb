@@ -1,48 +1,72 @@
 class AdminController < ApplicationController
   before_action :set_user, only: [:update]
   before_action :authenticate_user!
-  before_action :authorize_admin!
+  before_action :authorize_admin_or_gerente!, only: [:create, :update]
 
   def index
     @users = User.all
-    @user = User.new  
+    @user = User.new
   end
 
-
-
-
-  def create 
+  def create
     @user = User.new(user_params)
-    if @user.save
-      redirect_to admin_index_path, notice: 'Usuario Creado'
+
+    if current_user.admin_role?
+      if @user.save
+        redirect_to admin_index_path, notice: "Usuario creado con éxito."
+      else
+        render :new, status: :unprocessable_entity
+      end
+    elsif current_user.gerente_role?
+      if @user.role.in?(["gerente", "empleado"])
+        if @user.save
+          redirect_to admin_index_path, notice: "Usuario creado con éxito."
+        else
+          render :new, status: :unprocessable_entity
+        end
+      else
+        redirect_to admin_index_path, alert: "No tienes permiso para asignar este rol."
+      end
     else
-      redirect_to admin_index_path,alert: 'No es posible crear usuario'
+      redirect_to root_path, alert: "No tienes permiso para realizar esta acción."
     end
   end
 
-
-  def update     
-    if @user.update(user_params)
-      redirect_to admin_index_path, alert: 'Usuario Actualizado'
+  def update
+    if current_user.admin_role?
+      if @user.update(user_params)
+        redirect_to admin_index_path, notice: "Rol actualizado con éxito."
+      else
+        redirect_to admin_index_path, alert: "Error al actualizar el rol."
+      end
+    elsif current_user.gerente_role?
+      if params[:user][:role].in?(["gerente", "empleado"])
+        if @user.update(user_params)
+          redirect_to admin_index_path, notice: "Rol actualizado con éxito."
+        else
+          redirect_to admin_index_path, alert: "Error al actualizar el rol."
+        end
+      else
+        redirect_to admin_index_path, alert: "No tienes permiso para asignar este rol."
+      end
     else
-      redirect_to admin_index_path,alert: 'No es posible actualizar'
+      redirect_to root_path, alert: "No tienes permiso para realizar esta acción."
     end
   end
 
+  private
 
-  private 
-
-  def authorize_admin!
-    redirect_to root_path, alert: 'Acceso Denegado' unless current_user.admin_role? or current_user.gerente_role?
+  def authorize_admin_or_gerente!
+    unless current_user.admin_role? || current_user.gerente_role?
+      redirect_to root_path, alert: "No tienes permiso para realizar esta acción."
+    end
   end
-
 
   def user_params
-    params.require(:user).permit(:email,:password,:password_confirmation,:role)
+    params.require(:user).permit(:email, :password, :password_confirmation, :role)
   end
 
   def set_user
-    @user=User.find(params[:id])
+    @user = User.find(params[:id])
   end
-
 end

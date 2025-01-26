@@ -26,16 +26,15 @@
         <% @purchases.each do |purchase| %>
         <tr>
           <td><%= @users.find{|u| u.id==purchase.user_id }.email%></td>
-          <td> <%= purchase.created_at  %></td>
+          <td> <%= purchase.created_at.strftime("%B %d %Y, %l:%M%P")  %></td>
           <td> <%= purchase.cantidad  %></td>
           <td> <%= purchase.precio_unitario  %></td>     
           <td> <%= purchase.precio_total_venta  %></td>   
           <td> <%= @productos.find{|p| p.id==purchase.producto_id}.name %> </td>             
           <td> <%= purchase.nombre_cliente%></td>    
-          <td>  <%= link_to "Ver Detalle de Venta", purchase, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>      </td>     
+          <td>  <%= link_to "Ver Detalle", purchase, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>      </td>     
         </tr>
-      <% end %>       
-
+      <% end %>    
       </tbody>
     
   </div>

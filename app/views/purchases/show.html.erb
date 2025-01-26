@@ -16,8 +16,9 @@
         <%= link_to "Volver a Listado de Ventas", purchases_path, class:
         "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
       </div>
-      <div id="purchases" class="min-w-full">
+      <div id="purchases" class="min-w-full">        
         <%= render @purchase %>
+        
 
         <div class="edit-buttons">
           <%= link_to "Editar Venta", edit_purchase_path(@purchase),
