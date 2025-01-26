@@ -11,7 +11,6 @@ class PurchasesController < ApplicationController
 
   # GET /purchases/1 or /purchases/1.json
   def show      
-    
     @producto = Producto.find(@purchase.producto_id).name      
     @user = User.find(@purchase.user_id).email
     
@@ -19,8 +18,9 @@ class PurchasesController < ApplicationController
 
   # GET /purchases/new
   def new
-    @productos = Producto.all
-    @purchase = Purchase.new
+    @productos = Producto.where("stock >= 1")
+    @purchase = Purchase.new    
+        
   end
 
   def edit
@@ -29,8 +29,7 @@ class PurchasesController < ApplicationController
 
   # POST /purchases or /purchases.json
   def create
-    @purchase = Purchase.new(purchase_params)
-
+    @purchase = Purchase.new(purchase_params)    
     respond_to do |format|
       if @purchase.save
         format.html { redirect_to @purchase, notice: "Venta Creada correctamente." }

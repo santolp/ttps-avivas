@@ -1,43 +1,57 @@
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const selectElement = document.querySelector(".producto_select");
-  const cantidadElement = document.getElementById("cantidad");
-  const precioLabel = document.getElementById("precio_unitario_label");
-  const precioUnit = document.getElementById("precio_unitario_value");
-  const precioTotalVenta = document.getElementById("precio_total_venta");
-  const stockLabel = document.getElementById("stock_disponible");
-  const nombreProducto = "";
-  const stockDisponible = 0;
+  document.addEventListener("DOMContentLoaded", () => {
+    const selectElement = document.querySelector(".producto_select");
+    const cantidadElement = document.getElementById("cantidad");
+    const precioLabel = document.getElementById("precio_unitario_label");
+    const precioUnit = document.getElementById("precio_unitario_value");
+    const precioTotalVenta = document.getElementById("precio_total_venta");
+    const stockLabel = document.getElementById("stock_disponible_label");
+  
+    if (selectElement && cantidadElement) {   
+      const productos = JSON.parse(selectElement.dataset.productos);
+  
+      const calcularTotal = () => {
+        const selectedProductId = parseInt(selectElement.value, 10);
+        const selectedProduct = productos.find(product => product.id === selectedProductId);
+  
+        if (selectedProduct) {        
+          
+          cantidadElement.value = 0;
+          precioTotalVenta.value = 0;
+  
+          document.getElementById("cantidad").max = selectedProduct.stock;
+          const precioUnitario = selectedProduct.unit_price;
+          precioUnit.value = precioUnitario;
+          stockLabel.textContent = `Stock: ${selectedProduct.stock}`;
+          precioLabel.textContent = `Precio Unitario: $${precioUnitario}`;
+        } else {
+          
+          cantidadElement.value = 0;
+          precioTotalVenta.value = 0;
+          precioLabel.textContent = "Precio Unitario: -";
+          stockLabel.textContent = `Stock: -`;
+          precioUnit.value = "";
+        }
+      };
+  
+      selectElement.addEventListener("change", calcularTotal);
+      cantidadElement.addEventListener("input", () => {
+        const selectedProductId = parseInt(selectElement.value, 10);
+        const cantidad = parseInt(cantidadElement.value, 10) || 0;
+        const selectedProduct = productos.find(product => product.id === selectedProductId);
+  
+        if (selectedProduct) {
+          const precioTotal = selectedProduct.unit_price * cantidad;
+          precioTotalVenta.value = precioTotal.toFixed(2);
+        } else {
+          precioTotalVenta.value = 0;
+        }
+      });
+    }
+  });
+  </script>
 
-  if (selectElement && cantidadElement) {   
-    const productos = JSON.parse(selectElement.dataset.productos);
-    
-    const calcularTotal = () => {
-      const selectedProductId = parseInt(selectElement.value, 10);
-      const cantidad = parseInt(cantidadElement.value, 10) || 0; 
-      const selectedProduct = productos.find(product => product.id === selectedProductId);
-      
-      if (selectedProduct) {
-        const precioUnitario = selectedProduct.unit_price;
-        const precioTotal = precioUnitario * cantidad;
-        precioUnit.value=selectedProduct.unit_price;
-        stockLabel.textContent = `Stock: ${selectedProduct.stock}`;
-        precioLabel.textContent = `Precio Unitario: $${precioUnitario}`;
-        precioTotalVenta.value = precioTotal.toFixed(2); 
-        nombreProducto.value= selectedProduct.name;
-        stockDisponible.value = selectedProduct.stock-cantidad;
-      } else {
-        precioLabel.textContent = "Precio Unitario: -";
-        stockLabel.textContent = `Stock: -`;
-        precioTotalVenta.value = "";
-      }
-    };
 
-    selectElement.addEventListener("change", calcularTotal);
-    cantidadElement.addEventListener("input", calcularTotal);
-  }
-});
- </script>
 <%= form_with(model: purchase, class: "contents") do |form| %>
   <% if purchase.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
@@ -74,8 +88,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     { include_blank: "Selecciona un producto" },
                     { class: "producto_select", required: true,data: { productos: @productos.to_json },
                    } %>
-                   <label id="stock_disponible">Stock: -</label>
-    <%= form.hidden_field :stock_disponible, id: "stock_disponible", class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+                   <label id="stock_disponible_label">Stock: -</label>
+    <%= form.hidden_field :stock_disponible, id: "stock_disponible_label", class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="my-5">
@@ -85,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   <div class="my-5">
     <%= form.label :cantidad %>
-    <%= form.number_field :cantidad, id: "cantidad", min:1 , max:20 ,required: true, value: 0, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.number_field :cantidad, id: "cantidad" ,required: true   ,class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
   </div>  
 
 <div class="my-5">
