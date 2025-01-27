@@ -22,8 +22,11 @@
     <%= producto.description%>
   </p>
   <p style="text-align: center;">
+    <div class=<%=producto.stock > 0 ? "text-success center" : "text-danger center" %>
     <strong>Stock:</strong>
-    <%= producto.stock%>
+  
+    <%=  producto.stock > 0 ? producto.stock : "Sin Stock" %>
+    </div>
   </p>
   <p style="text-align: center;">
     <strong>Precio:</strong>

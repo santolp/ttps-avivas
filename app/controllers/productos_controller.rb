@@ -6,7 +6,7 @@ class ProductosController < ApplicationController
   # GET /productos or /productos.json
   def index
     #TODO agregar vista para traer todos los productos y luego filtrarlos por stock desde el html
-    @productos = Producto.where("stock >= 1")
+    @productos = Producto.all
   end
 
   # GET /productos/1 or /productos/1.json
