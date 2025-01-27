@@ -1,11 +1,14 @@
 class AdminController < ApplicationController
   before_action :set_user, only: [:update]
   before_action :authenticate_user!
-  before_action :authorize_admin_or_gerente!, only: [:create, :update]
+  before_action :authorize_admin_or_gerente!, only: [:create, :update,:destroy]
 
   def index
     @users = User.all
     @user = User.new
+  end
+
+  def show
   end
 
   def create
@@ -53,6 +56,20 @@ class AdminController < ApplicationController
       redirect_to root_path, alert: "No tienes permiso para realizar esta acción."
     end
   end
+
+  def destroy
+    if current_user.admin_role? || (current_user.gerente_role? && @user.role == "empleado")
+      if @user.destroy
+        redirect_to admin_index_path, notice: "Usuario eliminado con éxito."
+      else
+        redirect_to admin_index_path, alert: "Error al eliminar el usuario."
+      end
+    else
+      redirect_to admin_index_path, alert: "No tienes permiso para eliminar este usuario."
+    end
+  end
+
+
 
   private
 

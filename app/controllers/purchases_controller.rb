@@ -1,5 +1,6 @@
 class PurchasesController < ApplicationController
   before_action :set_purchase, only: %i[ show edit update destroy ]  
+  before_action :set_product, only: [:create]
 
   # GET /purchases or /purchases.json
   def index
@@ -28,16 +29,29 @@ class PurchasesController < ApplicationController
 
   # POST /purchases or /purchases.json
   def create
-    @purchase = Purchase.new(purchase_params)    
-    respond_to do |format|
+    @purchase = Purchase.new(purchase_params)  
+    @purchase.user_id = current_user.id
+
+    if @producto.nil?
+      redirect_to purchases_path, alert: "Producto no encontrado."
+      return
+    end
+
+    if @producto.stock < @purchase.cantidad
+      redirect_to purchases_path, alert: "Stock insuficiente para completar la venta." and return
+    end
+    
+    @purchase.fecha_venta = Time.now
+
+    ActiveRecord::Base.transaction do
+      @producto.decrement_stock!(@purchase.cantidad) 
       if @purchase.save
-        format.html { redirect_to @purchase, notice: "Venta Creada correctamente." }
-        format.json { render :show, status: :created, location: @purchase }
+        redirect_to purchases_path, notice: "Compra realizada con éxito. Stock actualizado."
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @purchase.errors, status: :unprocessable_entity }
+        raise ActiveRecord::Rollback, "Error al guardar la compra."
       end
     end
+    
   end
 
   # PATCH/PUT /purchases/1 or /purchases/1.json
@@ -67,6 +81,10 @@ class PurchasesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_purchase
       @purchase = Purchase.find(params.expect(:id))
+    end
+
+    def set_product
+      @producto = Producto.find_by(id: params[:purchase][:producto_id])
     end
 
     # Only allow a list of trusted parameters through.

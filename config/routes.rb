@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :roles
   devise_for :users
   resources :productos
-  resources :admin, only: [:index,:create,:update]
+  resources :admin, only: [:index,:create,:update,:destroy]
   
   #Resource
   resource :user ,only: [:show],controller: :user    

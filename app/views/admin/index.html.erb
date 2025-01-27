@@ -17,6 +17,7 @@
       <%= f.label :email, "Email", class: "form-label" %>
       <%= f.email_field :email, 
                         autofocus: true, 
+                        required:true,
                         placeholder: "Email", 
                         autocomplete: "email", 
                         class: "form-control" %>
@@ -35,6 +36,7 @@
     <div class="mb-3">
       <%= f.label :password, "Password", class: "form-label" %>
       <%= f.password_field :password, 
+                          required:true,
                            placeholder: "Password", 
                            class: "form-control" %>
     </div>
@@ -42,6 +44,7 @@
     <div class="mb-3">
       <%= f.label :password_confirmation, "Confirmación de Password", class: "form-label" %>
       <%= f.password_field :password_confirmation, 
+                          required:true,
                            placeholder: "Confirmación de Password", 
                            class: "form-control" %>
     </div>
@@ -79,6 +82,9 @@
                 <div class="d-flex align-items-center">
                   <%= f.select(:role, User.roles.keys.map { |role| [role] }, {}, class: "form-select me-2") %>
                   <%= f.submit "Actualizar", class: "btn btn-warning" %>
+                  <% if current_user.admin_role? || (current_user.gerente_role? && user.role == "empleado") %>
+                     <%= link_to "Eliminar", admin_path(user), method: :delete, data: { confirm: "¿Estás seguro de eliminar este usuario?" }, class: "btn btn-danger" %>
+                  <% end %>
                 </div>
               <% end %>
             </td>
