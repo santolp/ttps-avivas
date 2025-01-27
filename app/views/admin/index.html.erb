@@ -21,18 +21,13 @@
                         autocomplete: "email", 
                         class: "form-control" %>
     </div>
-  
-    <!-- Campo de Rol con lógica basada en el rol del usuario actual -->
     <div class="mb-3">
       <%= f.label :role, "Rol", class: "form-label" %>
-      <% if current_user.role == "admin" %>
-        <!-- Admin puede asignar cualquier rol -->
+      <% if current_user.role == "admin" %>        
         <%= f.select(:role, User.roles.keys.map { |role| [role.titleize, role] }, {}, class: "form-select") %>
-      <% elsif current_user.role == "gerente" %>
-        <!-- Gerente solo puede asignar Gerente o Empleado -->
+      <% elsif current_user.role == "gerente" %>        
         <%= f.select(:role, [["Gerente", "gerente"], ["Empleado", "empleado"]], {}, class: "form-select") %>
-      <% else %>
-        <!-- Otros roles no pueden asignar roles -->
+      <% else %>        
         <p class="text-danger">No tienes permiso para asignar roles.</p>
       <% end %>
     </div>

@@ -5,7 +5,7 @@ class ProductosController < ApplicationController
 
   # GET /productos or /productos.json
   def index
-    @productos = Producto.all
+    @productos = Producto.where("stock >= 1")
   end
 
   # GET /productos/1 or /productos/1.json
