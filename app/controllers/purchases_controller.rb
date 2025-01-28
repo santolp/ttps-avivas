@@ -69,16 +69,16 @@ class PurchasesController < ApplicationController
 
   # DELETE /purchases/1 or /purchases/1.json
   def destroy
-    @purchase.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to purchases_path, status: :see_other, notice: "Venta eliminada correctamente." }
-      format.json { head :no_content }
+    if @purchase.destroy
+      @purchase.producto.increment!(:stock, @purchase.cantidad)
+      redirect_to purchases_path, notice: "Venta cancelada y stock restaurado correctamente."
+    else
+      redirect_to purchases_path, alert: "No se pudo cancelar la venta."
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+    
     def set_purchase
       @purchase = Purchase.find(params.expect(:id))
     end
@@ -87,7 +87,7 @@ class PurchasesController < ApplicationController
       @producto = Producto.find_by(id: params[:purchase][:producto_id])
     end
 
-    # Only allow a list of trusted parameters through.
+    
     def purchase_params
       params.expect(purchase: [ :fecha_venta, :cantidad, :precio_unitario, :precio_total_venta, :user_id, :producto_id, :nombre_cliente ])
     end

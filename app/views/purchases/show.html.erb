@@ -25,7 +25,8 @@
           class:"button-edit btn-success" %>
           <div class="inline-block ml-2">
             <%= button_to "Eliminar Venta", @purchase, method: :delete,
-            class:"btn btn-danger"%>
+            data: { confirm: "¿Estás seguro de que deseas eliminar esta venta?" },
+            class:"btn btn-danger"%>            
           </div>
         
       </div>

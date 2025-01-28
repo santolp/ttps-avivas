@@ -7,7 +7,6 @@ class Producto < ApplicationRecord
       update!(stock: stock - cantidad)    
   end
 
-
   def product_list
     Producto.all
   end 
