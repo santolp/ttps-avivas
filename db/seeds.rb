@@ -8,48 +8,78 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+
+#Importamos la gema faker para generar datos aleatorios
+require 'faker'
+
+
+#Eliminamos todo lo que haya
+User.destroy_all
 Producto.destroy_all
+Purchase.destroy_all
 
-Producto.create!([
-    {
-    name:"Tee",
-    description: "Add to your wardrobe a simple and super soft basic T-shirt made from natural materials only. This T-shirt is made of 100% organic cotton jersey that feels silky smooth against the skin. Designed in a regular fit and completed with a rounded neckline.
+#Creamos los user de pruebas
+admin = User.create!(
+  email: "adminpepe@ejemplo.com",
+  username: "admin_user",
+  phone: "1123456789",
+  password: "admin123",
+  role: :admin
+)
 
-    Color: Bright White
-    
-    Quality: 100% Organic Cotton
-    
-    Style no.: 1010113-1010",
-    size:"Large",
-    color:"White",
-    ventas_id:1
-    category: "",
-    unit_price: 20,
-    stock: 20
-},
-{
-    name:"Shoes",
-    size:"Medium",
-    description:"Round toe. Faux leather. Laces with metallic eyelets.",
-    color:"Black",
-    ventas_id:2
-    category: "",
-    unit_price: 12,
-    stock: 10,
+gerente = User.create!(
+  email: "gerente@ejemplo.com",
+  username: "gerente_user",
+  phone: "1145678910",
+  password: "gerente123",
+  role: :gerente
+)
 
-},
-{
-    name:"Joggins",
-    size:"Medium",
-    description:"Joggins tipo babucha corte Regular con bolsillos ojal , cordón para ajustar la cintura y puños. Modelo: Talle M ( pesa 68kg mide 1,75 alto )",
-    color:"Yellow",
-    ventas_id:189
-    category: "",
-    unit_price: 43,
-    stock: 5,
-}])
+empleado = User.create!(
+  email: "empleado@ejemplo.com",
+  username: "empleado_user",
+  phone: "1178901234",
+  password: "empleado123",
+  role: :empleado
+)
 
-p "Created #{Producto.count} productos"
+
+#Creamos Productos
+productos = []
+10.times do
+  productos << Producto.create!(
+    name: Faker::Commerce.product_name,
+    unit_price: Faker::Commerce.price(range: 1000.0..10000.0),
+    stock: rand(50..200),
+    category: Faker::Commerce.department(max: 1),
+    size: ["S", "M", "L", "XL"].sample,
+    color: Faker::Color.color_name,
+    date_in_stock: Faker::Date.backward(days: 60),
+    last_update: Faker::Date.backward(days: 10),
+    description: Faker::Lorem.sentence(word_count: 10)
+  )
+end
+
+20.times do
+  producto = productos.sample
+  cantidad = rand(1..5)
+  precio_unitario = producto.unit_price
+  precio_total_venta = cantidad * precio_unitario
+  nombre_cliente = Faker::Name.first_name + " " + Faker::Name.last_name
+
+  #Creamos Ventas(Purchase)
+  Purchase.create!(
+    fecha_venta: Faker::Date.backward(days: 30),
+    cantidad: cantidad,
+    precio_unitario: precio_unitario,
+    precio_total_venta: precio_total_venta,
+    user_id: [admin, gerente, empleado].sample.id,
+    producto_id: producto.id,
+    nombre_cliente: nombre_cliente
+  )
+
+  producto.update!(stock: producto.stock - cantidad)
+end
 
 
 ##

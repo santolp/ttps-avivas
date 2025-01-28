@@ -2,11 +2,71 @@
 Trabajo integrador de la materia TTPS - UNLP
 
 
+# Sistema de Gestión de Ventas
+
+## Requisitos
+
 Para el siguiente proyecto usaremos 
     • La versión estable más reciente del framework Ruby on Rails (8.0.0 al momento de escribir
     este documento).
     • Una versión reciente de Ruby (3.2.0 o superior), acorde a lo requerido por el framework.
     • Una base de datos SQLite para dar soporte de persistencia.
+
+- Ruby 3.2.0
+- Rails 8.x
+- SQLite
+- Node.js
+- Yarn o npm
+- Bundler
+
+## Instalación
+
+1. Clonar el repositorio:
+   ```bash
+   git clone https://github.com/santolp/ttps-avivas.git
+   cd ttps-avivas
+   ```
+
+2. Instalar dependencias:
+   ```bash
+   bundle install
+   yarn install
+   ```
+
+3. Configurar la base de datos:
+   ```bash
+   rails db:create
+   rails db:migrate
+   rails db:seed
+   ```
+
+4. Levantar el servidor:
+   ```bash
+   rails server
+   ```
+
+5. Acceder al proyecto en el navegador:
+   ```
+   http://localhost:3000
+   ```
+
+## Usuarios de Prueba
+• Gestión de usuarios: un sistema de autenticación y autorización que permita a los empleados
+de la cadena acceder a las interfaces de administración. Ver apartado Gestión de usuarios.
+
+
+- **Admin**  
+  - Email: `admin@ejemplo.com`  
+  - Contraseña: `admin123`
+
+- **Gerente**  
+  - Email: `gerente@ejemplo.com`  
+  - Contraseña: `gerente123`
+
+- **Empleado**  
+  - Email: `empleado@ejemplo.com`  
+  - Contraseña: `empleado123`
+
 
 
 ////////////////////////////////////////////////////
@@ -23,8 +83,6 @@ tos.
 cadena registrar las ventas realizadas y los productos vendidos. Ver apartado Administración
 de ventas.
 
-• Gestión de usuarios: un sistema de autenticación y autorización que permita a los empleados
-de la cadena acceder a las interfaces de administración. Ver apartado Gestión de usuarios.
 
 
 ////////////////////////////////////////////////////
