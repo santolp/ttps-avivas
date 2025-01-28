@@ -70,7 +70,6 @@ class PurchasesController < ApplicationController
   # DELETE /purchases/1 or /purchases/1.json
   def destroy
     @purchase.destroy!
-
     respond_to do |format|
       format.html { redirect_to purchases_path, status: :see_other, notice: "Venta eliminada correctamente." }
       format.json { head :no_content }
