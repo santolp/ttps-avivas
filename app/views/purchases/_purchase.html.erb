@@ -1,0 +1,37 @@
+<div id="<%= dom_id purchase %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Fecha venta:</strong>
+    <%= purchase.created_at.strftime("%B %d %Y, %l:%M%P") %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Cantidad:</strong>
+    <%= purchase.cantidad %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Precio unitario:</strong>
+    <%= purchase.precio_unitario %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Precio total venta:</strong>
+    <%= purchase.precio_total_venta %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Empleado que Realizo la Venta:</strong>    
+    <%=  @user %>   
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Producto:</strong>
+    <%= @producto %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Nombre cliente:</strong>
+    <%= purchase.nombre_cliente %>
+  </p>
+
+</div>

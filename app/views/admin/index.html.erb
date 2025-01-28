@@ -1,0 +1,101 @@
+<div>
+  <div>
+    <div class="mx-auto">
+      <% if notice.present? %>
+      <p
+        class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block"
+        id="notice"
+      >
+        <%= notice %>
+      </p>
+      <% end %>
+    <h1>Seccion de Administracion</h1>
+    <h2>Crear User</h2>
+
+    <%= form_with(model: @user, url: admin_index_path, method: :post, class: "form-container") do |f| %>
+    <div class="mb-3">
+      <%= f.label :email, "Email", class: "form-label" %>
+      <%= f.email_field :email, 
+                        autofocus: true, 
+                        required:true,
+                        placeholder: "Email", 
+                        autocomplete: "email", 
+                        class: "form-control" %>
+    </div>
+    <div class="mb-3">
+      <%= f.label :role, "Rol", class: "form-label" %>
+      <% if current_user.admin_role? %>        
+        <%= f.select(:role, User.roles.keys.map { |role| [role.titleize, role] }, {}, class: "form-select") %>
+      <% elsif current_user.gerente_role? %>        
+        <%= f.select(:role, [["Gerente", "gerente"], ["Empleado", "empleado"]], {}, class: "form-select") %>
+      <% else %>        
+        <p class="text-danger">No tienes permiso para asignar roles.</p>
+      <% end %>
+    </div>
+  
+    <div class="mb-3">
+      <%= f.label :password, "Password", class: "form-label" %>
+      <%= f.password_field :password, 
+                          required:true,
+                           placeholder: "Password", 
+                           class: "form-control" %>
+    </div>
+  
+    <div class="mb-3">
+      <%= f.label :password_confirmation, "Confirmación de Password", class: "form-label" %>
+      <%= f.password_field :password_confirmation, 
+                          required:true,
+                           placeholder: "Confirmación de Password", 
+                           class: "form-control" %>
+    </div>
+  
+    <% if current_user.admin_role? || current_user.gerente_role? %>
+      <div class="d-grid">
+        <%= f.submit "Crear Usuario", class: "btn btn-success" %>
+      </div>
+    <% else %>
+      <p class="text-danger">No tienes permiso para crear usuarios.</p>
+    <% end %>
+  <% end %>
+  
+
+  </div>
+
+  <p></p>
+
+  <h1>Listado de usuarios actuales</h1>
+  <span></span>
+  <div class="container">
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th>Rol</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.email %></td>
+            <td>
+              <%= form_for(user, url: admin_path(user), remote: true, method: :patch) do |f| %>
+                <div class="d-flex align-items-center">
+                  <%= f.select(:role, User.roles.keys.map { |role| [role] }, {}, class: "form-select me-2") %>
+                  <%= f.submit "Actualizar", class: "btn btn-warning" %>
+                  
+                </div>
+              <% end %>
+              <!-- <% if current_user.admin_role? || (current_user.gerente_role? && user.role == "empleado") %>
+                  <%= link_to "Eliminar", admin_path(user), 
+                  method: :delete, 
+                  data: { confirm: "¿Estás seguro de que deseas eliminar este usuario?" }, 
+                  class: "btn btn-danger" %>
+                  
+                  <% end %> -->
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

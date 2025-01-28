@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administrador de Usuarios</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
     <div>
-    <%= link_to "Producto Nuevo" , new_producto_path, class:"p-2 rounded-lg bg-blue-500 text-blue-100" %>
-    
-    <button class="p-2 rounded-lg bg-blue-500 text-blue-100">Ver Roles</button>
-    
-</div>
-</head>
-<body>
-    
-</body>
+        <h1>Panel Administrador</h1>
+       
+  
+      <li><%= link_to "Crear User", new_user_registration_path , class:"p-2 rounded-lg 
+        bg-blue-500 text-blue-100" %> 
+      <%= link_to "Crear Producto Nuevo" , new_producto_path, class:"p-2 rounded-lg 
+      bg-blue-500 text-blue-100" %> 
+      <%= link_to "Ver Roles" , roles_path,
+      class:"p-2 rounded-lg bg-blue-500 text-blue-100" %>
+    </div>
+  </head>
+  <body></body>
 </html>

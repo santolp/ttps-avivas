@@ -1,0 +1,12 @@
+
+<%= stylesheet_link_tag 'producto', media: 'all', data: { turbolinks: false } %> 
+<div class="mx-auto md:w-2/3 w-full">
+  <div class="flex justify-between items-center">
+  <h1>Editar Venta</h1>
+  <%= link_to "Volver al listado de Ventas", purchases_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+</div>
+  <%= render "form", purchase: @purchase %>
+
+  
+  
+</div>

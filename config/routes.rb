@@ -1,17 +1,22 @@
 Rails.application.routes.draw do
+  resources :purchases
+  root "home#index"
+  get "home/index"
+
+  #Resources
   resources :categories
+  resources :roles
   devise_for :users
   resources :productos
-    resource :user ,only: [:show],controller: :user
-    resource :roles ,only: [:show], controller: :roles
-    resource :ventas ,only: [:show], controller: :ventas  
+  resources :admin, only: [:index,:create,:update,:destroy]
   
-
+  #Resource
+  resource :user ,only: [:show],controller: :user    
+  #resources :ventas ,only: [:show], controller: :purchases  
   
-  root "home#index"
+  get "ventas" => "purchases#index"
   
   
-  get "home/index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_14_004314) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_17_195110) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -71,6 +71,18 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_14_004314) do
     t.string "description"
   end
 
+  create_table "purchases", force: :cascade do |t|
+    t.datetime "fecha_venta"
+    t.integer "cantidad"
+    t.decimal "precio_unitario"
+    t.decimal "precio_total_venta"
+    t.integer "user_id"
+    t.integer "producto_id"
+    t.string "nombre_cliente"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string "name"
     t.datetime "last_update"
@@ -92,17 +104,9 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_14_004314) do
     t.integer "phone"
     t.string "username"
     t.string "role_id"
+    t.integer "role"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  end
-
-  create_table "ventas", force: :cascade do |t|
-    t.string "name"
-    t.string "producto"
-    t.datetime "last_update"
-    t.datetime "delete_date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

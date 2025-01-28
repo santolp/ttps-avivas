@@ -11,7 +11,7 @@
     <% producto.images.each do |image| %>    
     <div class="products-items product-image">
       <%= image_tag image%>
-      <!-- <div><%= link_to image.filename%></div> -->
+      
     </div>
     <% end %>  
   </div>    
@@ -20,6 +20,13 @@
   <p style="text-align: center;">
     <strong>Descripcion:</strong>
     <%= producto.description%>
+  </p>
+  <p style="text-align: center;">
+    <div class=<%=producto.stock > 0 ? "text-success center" : "text-danger center" %>
+    <strong>Stock:</strong>
+  
+    <%=  producto.stock > 0 ? producto.stock : "Sin Stock" %>
+    </div>
   </p>
   <p style="text-align: center;">
     <strong>Precio:</strong>

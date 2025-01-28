@@ -2,11 +2,71 @@
 Trabajo integrador de la materia TTPS - UNLP
 
 
+# Sistema de Gestión de Ventas
+
+## Requisitos
+
 Para el siguiente proyecto usaremos 
     • La versión estable más reciente del framework Ruby on Rails (8.0.0 al momento de escribir
     este documento).
     • Una versión reciente de Ruby (3.2.0 o superior), acorde a lo requerido por el framework.
     • Una base de datos SQLite para dar soporte de persistencia.
+
+- Ruby 3.2.0
+- Rails 8.x
+- SQLite
+- Node.js
+- Yarn o npm
+- Bundler
+
+## Instalación
+
+1. Clonar el repositorio:
+   ```bash
+   git clone https://github.com/santolp/ttps-avivas.git
+   cd ttps-avivas
+   ```
+
+2. Instalar dependencias:
+   ```bash
+   bundle install
+   yarn install
+   ```
+
+3. Configurar la base de datos:
+   ```bash
+   rails db:create
+   rails db:migrate
+   rails db:seed
+   ```
+
+4. Levantar el servidor:
+   ```bash
+   rails server
+   ```
+
+5. Acceder al proyecto en el navegador:
+   ```
+   http://localhost:3000
+   ```
+
+## Usuarios de Prueba
+• Gestión de usuarios: un sistema de autenticación y autorización que permita a los empleados
+de la cadena acceder a las interfaces de administración. Ver apartado Gestión de usuarios.
+
+
+- **Admin**  
+  - Email: `admin@avivas.com`  
+  - Contraseña: `admin123`
+
+- **Gerente**  
+  - Email: `gerente@avivas.com`  
+  - Contraseña: `gerente123`
+
+- **Empleado**  
+  - Email: `empleado@avivas.com`  
+  - Contraseña: `empleado123`
+
 
 
 ////////////////////////////////////////////////////
@@ -23,8 +83,6 @@ tos.
 cadena registrar las ventas realizadas y los productos vendidos. Ver apartado Administración
 de ventas.
 
-• Gestión de usuarios: un sistema de autenticación y autorización que permita a los empleados
-de la cadena acceder a las interfaces de administración. Ver apartado Gestión de usuarios.
 
 
 ////////////////////////////////////////////////////
@@ -301,30 +359,13 @@ sqlite>
 
 fuente: https://www.tutorialspoint.com/sqlite/sqlite_installation.htm
 
-# DEMO AVIVAS -->
-1. Home
 
-   ![Alt text](https://github.com/santolp/ttps-avivas/blob/dev/app/assets/images/demo/home.png)
+Edición de código
+Instala VS Code en Windows e instala la extensión WSL. Esto te permitirá editar código en Windows pero ejecutar comandos y extensiones en WSL. Lee más sobre Desarrollo en WSL.
 
-2.Login 
-    ![Alt text](https://github.com/santolp/ttps-avivas/blob/dev/app/assets/images/demo/login.png)
+¡Eso es todo! ¡Cuéntanos en los comentarios a continuación si tienes algún problema o tienes otros consejos profesionales para compartir!
 
-3.Logged In
-    ![Alt text](https://github.com/santolp/ttps-avivas/blob/dev/app/assets/images/demo/logged_in.png)
-4.Productos Page
-    ![Alt text](https://github.com/santolp/ttps-avivas/blob/dev/app/assets/images/demo/productos.png)
 
-5.Nuevo Producto
-    ![Alt text](https://github.com/santolp/ttps-avivas/blob/dev/app/assets/images/demo/new_product_page.png)
+fuente: https://gorails.com/setup/windows/10
 
-6.Sign Up
-    ![Alt text](https://github.com/santolp/ttps-avivas/blob/dev/app/assets/images/demo/sign_up.png)
 
-7.Edit User
-    ![Alt text](https://github.com/santolp/ttps-avivas/blob/dev/app/assets/images/demo/edit_user.png)
-
-8.Edit Usuario
-    ![Alt text](https://github.com/santolp/ttps-avivas/blob/dev/app/assets/images/demo/admin_page.png)
-    
-9.Producto Logged In
-    ![Alt text](https://github.com/santolp/ttps-avivas/blob/dev/app/assets/images/demo/producto_logged_in.png)
