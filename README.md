@@ -56,15 +56,15 @@ de la cadena acceder a las interfaces de administración. Ver apartado Gestión 
 
 
 - **Admin**  
-  - Email: `admin@ejemplo.com`  
+  - Email: `admin@avivas.com`  
   - Contraseña: `admin123`
 
 - **Gerente**  
-  - Email: `gerente@ejemplo.com`  
+  - Email: `gerente@avivas.com`  
   - Contraseña: `gerente123`
 
 - **Empleado**  
-  - Email: `empleado@ejemplo.com`  
+  - Email: `empleado@avivas.com`  
   - Contraseña: `empleado123`
 
 

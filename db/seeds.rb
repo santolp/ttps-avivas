@@ -20,7 +20,7 @@ Purchase.destroy_all
 
 #Creamos los user de pruebas
 admin = User.create!(
-  email: "adminpepe@ejemplo.com",
+  email: "admin@avivas.com",
   username: "admin_user",
   phone: "1123456789",
   password: "admin123",
@@ -28,7 +28,7 @@ admin = User.create!(
 )
 
 gerente = User.create!(
-  email: "gerente@ejemplo.com",
+  email: "gerente@avivas.com",
   username: "gerente_user",
   phone: "1145678910",
   password: "gerente123",
@@ -36,7 +36,7 @@ gerente = User.create!(
 )
 
 empleado = User.create!(
-  email: "empleado@ejemplo.com",
+  email: "empleado@avivas.com",
   username: "empleado_user",
   phone: "1178901234",
   password: "empleado123",
