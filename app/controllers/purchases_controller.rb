@@ -78,7 +78,7 @@ class PurchasesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+    
     def set_purchase
       @purchase = Purchase.find(params.expect(:id))
     end
@@ -87,7 +87,7 @@ class PurchasesController < ApplicationController
       @producto = Producto.find_by(id: params[:purchase][:producto_id])
     end
 
-    # Only allow a list of trusted parameters through.
+    
     def purchase_params
       params.expect(purchase: [ :fecha_venta, :cantidad, :precio_unitario, :precio_total_venta, :user_id, :producto_id, :nombre_cliente ])
     end
