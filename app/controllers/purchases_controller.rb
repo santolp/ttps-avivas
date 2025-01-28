@@ -69,10 +69,11 @@ class PurchasesController < ApplicationController
 
   # DELETE /purchases/1 or /purchases/1.json
   def destroy
-    @purchase.destroy!
-    respond_to do |format|
-      format.html { redirect_to purchases_path, status: :see_other, notice: "Venta eliminada correctamente." }
-      format.json { head :no_content }
+    if @purchase.destroy
+      @purchase.producto.increment!(:stock, @purchase.cantidad)
+      redirect_to purchases_path, notice: "Venta cancelada y stock restaurado correctamente."
+    else
+      redirect_to purchases_path, alert: "No se pudo cancelar la venta."
     end
   end
 
