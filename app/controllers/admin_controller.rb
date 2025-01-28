@@ -60,12 +60,12 @@ class AdminController < ApplicationController
   def destroy
     if current_user.admin_role? || (current_user.gerente_role? && @user.role == "empleado")
       if @user.destroy
-        redirect_to admin_index_path, notice: "Usuario eliminado con éxito."
+        redirect_to admin_index_path, notice: "Usuario eliminado con éxito." and return
       else
-        redirect_to admin_index_path, alert: "Error al eliminar el usuario."
+        redirect_to admin_index_path, alert: "Error al eliminar el usuario." and return
       end
     else
-      redirect_to admin_index_path, alert: "No tienes permiso para eliminar este usuario."
+      redirect_to admin_index_path, alert: "No tienes permiso para eliminar este usuario." and return
     end
   end
 

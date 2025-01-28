@@ -24,9 +24,9 @@
     </div>
     <div class="mb-3">
       <%= f.label :role, "Rol", class: "form-label" %>
-      <% if current_user.role == "admin" %>        
+      <% if current_user.admin_role? %>        
         <%= f.select(:role, User.roles.keys.map { |role| [role.titleize, role] }, {}, class: "form-select") %>
-      <% elsif current_user.role == "gerente" %>        
+      <% elsif current_user.gerente_role? %>        
         <%= f.select(:role, [["Gerente", "gerente"], ["Empleado", "empleado"]], {}, class: "form-select") %>
       <% else %>        
         <p class="text-danger">No tienes permiso para asignar roles.</p>
@@ -49,7 +49,7 @@
                            class: "form-control" %>
     </div>
   
-    <% if current_user.role == "admin" || current_user.role == "gerente" %>
+    <% if current_user.admin_role? || current_user.gerente_role? %>
       <div class="d-grid">
         <%= f.submit "Crear Usuario", class: "btn btn-success" %>
       </div>
@@ -82,11 +82,16 @@
                 <div class="d-flex align-items-center">
                   <%= f.select(:role, User.roles.keys.map { |role| [role] }, {}, class: "form-select me-2") %>
                   <%= f.submit "Actualizar", class: "btn btn-warning" %>
-                  <% if current_user.admin_role? || (current_user.gerente_role? && user.role == "empleado") %>
-                     <%= link_to "Eliminar", admin_path(user), method: :delete, data: { confirm: "¿Estás seguro de eliminar este usuario?" }, class: "btn btn-danger" %>
-                  <% end %>
+                  
                 </div>
               <% end %>
+              <!-- <% if current_user.admin_role? || (current_user.gerente_role? && user.role == "empleado") %>
+                  <%= link_to "Eliminar", admin_path(user), 
+                  method: :delete, 
+                  data: { confirm: "¿Estás seguro de que deseas eliminar este usuario?" }, 
+                  class: "btn btn-danger" %>
+                  
+                  <% end %> -->
             </td>
           </tr>
         <% end %>
